@@ -1,0 +1,78 @@
+.inner {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ↓ここに処理を書く↓ */
+
+$maxWidth: 1000px;
+$brandColor: #cd6799;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: $maxWidth;
+  margin: 0 auto;
+  padding: 10px 0;
+
+  h1 {
+    text-align: left;
+  }
+
+  &__logo {
+    width: 80px;
+  }
+
+  &__list {
+    display: flex;
+
+    & > li {
+      margin-left: 30px;
+
+      /* 擬似クラスもこのように書く事が可能 */
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    &__link {
+      &:hover {
+        color: $brandColor;
+      }
+    }
+  }
+}
+
+@mixin btn($color) {
+  display: block;
+  padding: 20px 30px;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: $color;
+  text: {
+    decoration: none;
+    align: center;
+  }
+}
+
+.footer {
+
+  &__sns {
+
+    &__btn {
+      &.is-facebook {
+        @include btn(#4668b3); // 引数にカラーコードを入れる
+      }
+    }
+  }
+}
