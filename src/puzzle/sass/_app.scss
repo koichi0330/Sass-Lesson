@@ -1,0 +1,85 @@
+@use 'variable' as v;
+@use 'mixin' as m;
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: v.$navy;
+  height: 100px;
+  width: 400px;
+
+  &__block {
+    display: flex;
+    align-items: center;
+    background-color: v.$white;
+    height: 60px;
+    width: 160px;
+    padding: 0px;
+    margin-right: 20px;
+
+    @each $index in v.$classNames {
+      $index_key: index(v.$classNames, $index);
+
+      &__box {
+        list-style: none;
+
+        &.is-#{$index} {
+          @include m.headerBox(nth(v.$buttonColor, $index_key));
+        }
+      }
+    }
+  }
+}
+
+.side__main__inner {
+  display: flex;
+}
+
+.sidebar {
+  height: 250px;
+  width: 150px;
+  background-color: v.$green;
+}
+
+.main {
+  height: 250px;
+  width: 250px;
+  background-color: v.$red;
+  display: flex;
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    margin: 40px 0px 0px 40px;
+    padding: 0px;
+
+    &__box {
+      height: 50px;
+      width: 150px;
+      background-color: v.$white;
+      margin-bottom: 10px;
+      padding: 0px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+
+      & > li {
+        @each $index in v.$classNames {
+          $index_key: index(v.$classNames, $index);
+
+          &.is-#{$index} {
+            @include m.mainBox(nth(v.$buttonColor, $index_key));
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  height: 100px;
+  width: 400px;
+  background-color: v.$brown;
+}
